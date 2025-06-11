@@ -8,11 +8,12 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                sh 'npm install --unsafe-perm'
             }
         }
         stage('Run Tests') {
             steps {
+                sh 'chmod +x node_modules/.bin/jest'
                 sh 'npx jest --coverage'
             }
         }
